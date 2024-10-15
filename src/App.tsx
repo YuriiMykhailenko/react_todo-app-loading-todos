@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 import { ErrorNotification } from './components/ErrorNotification';
 import { ErrorMessages } from './types/ErrorMessages';
 import { Header } from './components/Header';
+import { handleError } from './utils/HandleError';
 
 export const App: React.FC = () => {
   const [todoos, setTodos] = useState<Todo[]>([]);
@@ -21,12 +22,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     getTodos()
       .then(setTodos)
-      .catch(() => setError(ErrorMessages.LoadFail))
-      .finally(() =>
-        setTimeout(() => {
-          setError(ErrorMessages.None);
-        }, 3000),
-      );
+      .catch(() => handleError(setError, ErrorMessages.LoadFail));
   }, []);
 
   const numberOfActiveTodos = useMemo(() => {
