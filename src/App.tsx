@@ -41,7 +41,7 @@ export const App: React.FC = () => {
       );
   }, []);
 
-  const activeTodos = todoos.filter(todo => !todo.completed).length;
+  const numberOfActiveTodos = todoos.filter(todo => !todo.completed).length;
 
   const filteredTodos = getFilteredTodos(todoos, filterOption);
 
@@ -77,7 +77,7 @@ export const App: React.FC = () => {
         {todoos.length && (
           <footer className="todoapp__footer" data-cy="Footer">
             <span className="todo-count" data-cy="TodosCounter">
-              {activeTodos} items left
+              {numberOfActiveTodos} items left
             </span>
 
             {/* Active link should have the 'selected' class */}
